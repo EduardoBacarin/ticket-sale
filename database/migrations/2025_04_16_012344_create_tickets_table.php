@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tickets', function (Blueprint $table) {
-            $table->uuid();
+            $table->uuid('id')->primary();
             $table->foreignUuid('events_id')->references('id')->on('events');
             $table->foreignUuid('sectors_id')->references('id')->on('sectors');
             $table->string('name')->index();
