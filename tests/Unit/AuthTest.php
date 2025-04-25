@@ -36,3 +36,15 @@ test('update user success', function () {
     $user = User::where('email', 'user@test.com')->first();
     expect($user->name)->toBe('User Updated Test');
 });
+
+test('login user success', function () {
+    include_once(app_path('Functions/User.php'));
+    include_once(app_path('Functions/Auth.php'));
+    $data = [
+        'name' => 'User Test',
+        'email' => 'user@test.com',
+        'password' => '123password123'
+    ];
+    createUser($data);
+    expect(login($data['email'], $data['password']))->toBeTrue();
+});
